@@ -1,9 +1,9 @@
 import React from 'react';
-import {Typography, IconButton } from '@mui/material';
+import { Typography, IconButton } from '@mui/material';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import MessageIcon from '@mui/icons-material/Message';
+import CategoryIcon from '@mui/icons-material/Category';
 
 // Função para calcular a pontuação média dos sentimentos
 function calculateAverageScore(results, sentimentType) {
@@ -18,22 +18,24 @@ const SentimentAnalysisSummary = ({ results }) => {
   const negativeTweets = results.filter(r => r.Sentiment === 'negative').length;
   const neutralTweets = results.filter(r => r.Sentiment === 'neutral').length;
 
-  const averagePositiveScore = calculateAverageScore(results, 'positive');
-  const averageNegativeScore = calculateAverageScore(results, 'negative');
-  const averageNeutralScore = calculateAverageScore(results, 'neutral');
+  // Custom category counts
+  const customFelicidade = results.filter(r => r.Custom_Category === 'felicidade').length;
+  const customTristeza = results.filter(r => r.Custom_Category === 'tristeza').length;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-96"> {/* Altura igual ao gráfico */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-96">
+      {/* Card para Total de Tweets */}
       <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-center h-full">
         <div className="text-center">
           <IconButton>
-            <MessageIcon className="text-blue-500" style={{ fontSize: 40 }} />
+            <CategoryIcon className="text-blue-500" style={{ fontSize: 40 }} />
           </IconButton>
           <Typography variant="h6">Total de Tweets</Typography>
           <Typography variant="h4">{totalTweets}</Typography>
         </div>
       </div>
 
+      {/* Card para Tweets Positivos */}
       <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-center h-full">
         <div className="text-center">
           <IconButton>
@@ -41,10 +43,10 @@ const SentimentAnalysisSummary = ({ results }) => {
           </IconButton>
           <Typography variant="h6">Positivos</Typography>
           <Typography variant="h4">{positiveTweets}</Typography>
-          <Typography variant="body2">Pontuação Média: {averagePositiveScore}</Typography>
         </div>
       </div>
 
+      {/* Card para Tweets Neutros */}
       <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-center h-full">
         <div className="text-center">
           <IconButton>
@@ -52,10 +54,10 @@ const SentimentAnalysisSummary = ({ results }) => {
           </IconButton>
           <Typography variant="h6">Neutros</Typography>
           <Typography variant="h4">{neutralTweets}</Typography>
-          <Typography variant="body2">Pontuação Média: {averageNeutralScore}</Typography>
         </div>
       </div>
 
+      {/* Card para Tweets Negativos */}
       <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-center h-full">
         <div className="text-center">
           <IconButton>
@@ -63,7 +65,18 @@ const SentimentAnalysisSummary = ({ results }) => {
           </IconButton>
           <Typography variant="h6">Negativos</Typography>
           <Typography variant="h4">{negativeTweets}</Typography>
-          <Typography variant="body2">Pontuação Média: {averageNegativeScore}</Typography>
+        </div>
+      </div>
+
+      {/* Novo Card para Custom Categories (Ocupando 2 colunas) */}
+      <div className="col-span-2 bg-white p-4 rounded-lg shadow-md flex items-center justify-center h-full">
+        <div className="text-center">
+          <IconButton>
+            <CategoryIcon className="text-purple-600" style={{ fontSize: 40 }} />
+          </IconButton>
+          <Typography variant="h6">Categorias Personalizadas</Typography>
+          <Typography variant="body2">Felicidade: {customFelicidade}</Typography>
+          <Typography variant="body2">Tristeza: {customTristeza}</Typography>
         </div>
       </div>
     </div>

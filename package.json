@@ -1,6 +1,6 @@
 {
   "name": "front",
-  "homepage": "https://Sullivan18.github.io/SentimentDash", 
+  "homepage": "https://sullivan18.github.io/SentimentDash",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

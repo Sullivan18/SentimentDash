@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SentimentAnalysisResults from './components/SentimentAnalysisResults';
 import { CircularProgress } from '@mui/material';
 
@@ -8,14 +8,9 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleInputChange = (event) => {
-    setTwitterUsername(event.target.value);
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  // Função para buscar os dados da API
+  const fetchData = async () => {
     if (!twitterUsername) {
-      alert('Por favor, insira um nome de usuário do Twitter');
       return;
     }
 
@@ -23,7 +18,7 @@ function App() {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:8001/scrape', {
+      const response = await fetch('https://b7ac-177-36-171-33.ngrok-free.app/scrape', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,6 +36,28 @@ function App() {
     } catch (error) {
       setError('Erro ao obter os dados da API');
       setLoading(false);
+    }
+  };
+
+  // Atualizar a cada 30 segundos
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchData();
+    }, 30000); // 30 segundos
+
+    return () => clearInterval(interval); // Limpar intervalo quando o componente desmonta
+  }, [twitterUsername]); // A função de atualização é chamada quando o username muda
+
+  const handleInputChange = (event) => {
+    setTwitterUsername(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (twitterUsername) {
+      fetchData();
+    } else {
+      alert('Por favor, insira um nome de usuário do Twitter');
     }
   };
 

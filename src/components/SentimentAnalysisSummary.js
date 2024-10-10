@@ -6,11 +6,7 @@ import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import CategoryIcon from '@mui/icons-material/Category';
 
 // Função para calcular a pontuação média dos sentimentos
-function calculateAverageScore(results, sentimentType) {
-  const filteredResults = results.filter(r => r.Sentiment === sentimentType);
-  const totalScore = filteredResults.reduce((acc, result) => acc + result.Sentiment_Score, 0);
-  return filteredResults.length > 0 ? (totalScore / filteredResults.length).toFixed(2) : 0;
-}
+
 
 const SentimentAnalysisSummary = ({ results }) => {
   const totalTweets = results.length;

@@ -17,3 +17,43 @@ code {
     monospace;
     
 }
+
+
+/* Estilo da barra de rolagem (modo claro) */
+.light-scrollbar::-webkit-scrollbar {
+  width: 12px;
+}
+
+.light-scrollbar::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.light-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+  border: 2px solid #f1f1f1;
+}
+
+.light-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* Estilo da barra de rolagem (modo escuro) */
+.dark-scrollbar::-webkit-scrollbar {
+  width: 12px;
+}
+
+.dark-scrollbar::-webkit-scrollbar-track {
+  background-color: #2e2e2e;
+}
+
+.dark-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 10px;
+  border: 2px solid #181a1b;
+}
+
+.dark-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #333;
+}
+

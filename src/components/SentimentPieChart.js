@@ -1,15 +1,36 @@
 import React from 'react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 
+const SentimentPieChart = ({ sentimentData, darkMode }) => {
+  // Função de formatação para garantir que o valor e o nome sejam exibidos corretamente no Tooltip
+  const CustomTooltip = ({ active, payload, label }) => {
+    // Verificar se o Tooltip está ativo e se o payload contém dados válidos
+    if (active && payload && payload.length > 0) {
+      return (
+        <div
+          style={{
+            backgroundColor: darkMode ? 'rgba(48, 48, 48, 0.9)' : 'rgba(211, 211, 211, 0.9)',
+            borderRadius: '8px',
+            padding: '10px',
+            color: darkMode ? '#fff' : '#000',
+          }}
+        >
+          {/* Exibir o nome e o valor do payload de forma segura */}
+          <p>{`${payload[0].name}: ${payload[0].value}`}</p>
+        </div>
+      );
+    }
+    return null; // Retornar null se o tooltip não estiver ativo ou os dados não forem válidos
+  };
 
-const SentimentPieChart = ({ sentimentData }) => {
   return (
-    <div className="bg-white p-6 rounded-2xl shadow-lg h-[520px]"> {/* Estilo moderno e espaçamento maior */}
-      <h5 className="text-center text-2xl font-bold mb-6 text-gray-700">Gráfico de Sentimentos</h5> {/* Título mais estilizado */}
+    <div className={`p-6 rounded-2xl shadow-lg h-[520px] ${darkMode ? 'bg-[#202225]' : 'bg-white'}`}>
+      <h5 className={`text-center text-2xl font-bold mb-6 ${darkMode ? 'text-[#e8e6e3]' : 'text-gray-700'}`}>
+        Gráfico de Sentimentos
+      </h5>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <defs>
-            {/* Gradiente para dar um visual moderno ao gráfico */}
             <linearGradient id="greenGradient" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#00A000" stopOpacity={0.8} />
               <stop offset="95%" stopColor="#00FF00" stopOpacity={0.6} />
@@ -27,32 +48,23 @@ const SentimentPieChart = ({ sentimentData }) => {
             data={sentimentData}
             cx="50%"
             cy="45%"
-            outerRadius={180} // Aumentar ainda mais o raio externo para melhorar a visualização
-            innerRadius={70} // Adicionar raio interno para transformar o gráfico em um donut
+            outerRadius={180}
+            innerRadius={70}
             fill="#8884d8"
             dataKey="value"
-            labelLine={false} // Remover as linhas dos labels para um visual mais limpo
-            animationDuration={800} // Adicionar animação ao gráfico
-            label={({ name, value }) => `${name}: ${value}`} // Melhorar o formato do label
+            labelLine={false}
+            animationDuration={800}
+            label={({ name, value }) => `${name}: ${value}`}
           >
             {sentimentData.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
-                fill={`url(#${index === 0 ? 'greenGradient' : index === 1 ? 'yellowGradient' : 'redGradient'})`} // Aplicar os gradientes às cores
+                fill={`url(#${index === 0 ? 'greenGradient' : index === 1 ? 'yellowGradient' : 'redGradient'})`}
               />
             ))}
           </Pie>
-          <Tooltip
-            formatter={(value, name) => [`${value}`, `${name}`]} // Tooltip mais limpa
-            contentStyle={{
-              backgroundColor: 'rgba(211, 211, 211)',
-              borderRadius: '8px',
-              color: '#fff',
-              border: 'none',
-              padding: '10px',
-            }} // Customização do estilo do Tooltip
-            cursor={{ fill: 'rgba(0, 0, 0, 0.1)' }} // Customização do cursor
-          />
+          {/* Usar o CustomTooltip para personalizar o conteúdo do Tooltip */}
+          <Tooltip content={<CustomTooltip />} />
         </PieChart>
       </ResponsiveContainer>
     </div>

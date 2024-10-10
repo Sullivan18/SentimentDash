@@ -5,7 +5,7 @@ import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import CategoryIcon from '@mui/icons-material/Category';
 
-const SentimentAnalysisSummary = ({ results }) => {
+const SentimentAnalysisSummary = ({ results, darkMode }) => {
   const totalTweets = results.length;
   const positiveTweets = results.filter(r => r.Sentiment === 'positive').length;
   const negativeTweets = results.filter(r => r.Sentiment === 'negative').length;
@@ -16,10 +16,10 @@ const SentimentAnalysisSummary = ({ results }) => {
   const customTristeza = results.filter(r => r.Custom_Category === 'tristeza').length;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-96">
+    <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 h-96 ${darkMode ? 'bg-[#181a1b] text-[#e8e6e3]' : 'bg-white text-black'}`}>
       
       {/* Card para Total de Tweets */}
-      <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-center h-full">
+      <div className={`p-4 rounded-lg shadow-md flex items-center justify-center h-full ${darkMode ? 'bg-[#202225]' : 'bg-white'}`}>
         <div className="text-center">
           <Tooltip title="Número total de tweets analisados" placement="top" arrow>
             <IconButton>
@@ -32,7 +32,7 @@ const SentimentAnalysisSummary = ({ results }) => {
       </div>
 
       {/* Card para Tweets Positivos */}
-      <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-center h-full">
+      <div className={`p-4 rounded-lg shadow-md flex items-center justify-center h-full ${darkMode ? 'bg-[#202225]' : 'bg-white'}`}>
         <div className="text-center">
           <Tooltip title="Número de tweets com sentimento positivo" placement="top" arrow>
             <IconButton>
@@ -45,7 +45,7 @@ const SentimentAnalysisSummary = ({ results }) => {
       </div>
 
       {/* Card para Tweets Neutros */}
-      <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-center h-full">
+      <div className={`p-4 rounded-lg shadow-md flex items-center justify-center h-full ${darkMode ? 'bg-[#202225]' : 'bg-white'}`}>
         <div className="text-center">
           <Tooltip title="Número de tweets com sentimento neutro" placement="top" arrow>
             <IconButton>
@@ -58,7 +58,7 @@ const SentimentAnalysisSummary = ({ results }) => {
       </div>
 
       {/* Card para Tweets Negativos */}
-      <div className="bg-white p-4 rounded-lg shadow-md flex items-center justify-center h-full">
+      <div className={`p-4 rounded-lg shadow-md flex items-center justify-center h-full ${darkMode ? 'bg-[#202225]' : 'bg-white'}`}>
         <div className="text-center">
           <Tooltip title="Número de tweets com sentimento negativo" placement="top" arrow>
             <IconButton>
@@ -71,7 +71,7 @@ const SentimentAnalysisSummary = ({ results }) => {
       </div>
 
       {/* Novo Card para Custom Categories (Ocupando 2 colunas) */}
-      <div className="col-span-2 bg-white p-4 rounded-lg shadow-md flex items-center justify-center h-full">
+      <div className={`col-span-2 p-4 rounded-lg shadow-md flex items-center justify-center h-full ${darkMode ? 'bg-[#202225]' : 'bg-white'}`}>
         <div className="text-center">
           <Tooltip title="Categorias personalizadas baseadas no dicionário" placement="top" arrow>
             <IconButton>

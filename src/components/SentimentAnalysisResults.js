@@ -3,14 +3,12 @@ import SentimentAnalysisSummary from './SentimentAnalysisSummary';
 import SentimentPieChart from './SentimentPieChart';
 import SentimentLineChart from './SentimentLineChart';
 
-const SentimentAnalysisResults = ({ results }) => {
+const SentimentAnalysisResults = ({ results, darkMode }) => {
   const sentimentData = [
     { name: 'Positivos', value: results.filter(r => r.Sentiment === 'positive').length },
     { name: 'Neutros', value: results.filter(r => r.Sentiment === 'neutral').length },
     { name: 'Negativos', value: results.filter(r => r.Sentiment === 'negative').length },
   ];
-
-  
 
   const getSentimentOverTimeData = (results) => {
     const data = results.reduce((acc, result) => {
@@ -37,25 +35,23 @@ const SentimentAnalysisResults = ({ results }) => {
   const sentimentOverTimeData = getSentimentOverTimeData(results);
 
   return (
-    <div className="flex flex-col gap-22">
+    <div className={`flex flex-col gap-22 ${darkMode ? 'bg-[#181a1b] text-[#e8e6e3]' : 'bg-white text-black'}`}>
       {/* Seção 1: Cards de Resumo e Gráfico de Pizza */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <SentimentAnalysisSummary results={results} />
+          <SentimentAnalysisSummary results={results} darkMode={darkMode} />
         </div>
         <div>
-          <SentimentPieChart sentimentData={sentimentData} />
+          <SentimentPieChart sentimentData={sentimentData} darkMode={darkMode} />
         </div>
       </div>
   
       {/* Seção 2: Gráfico de Linha (Abaixo dos Cards e Gráficos de Pizza) */}
       <div className="mt-8">
-        <SentimentLineChart sentimentOverTimeData={sentimentOverTimeData} />
+        <SentimentLineChart sentimentOverTimeData={sentimentOverTimeData} darkMode={darkMode} />
       </div>
     </div>
   );
-  
-
 };
 
 export default SentimentAnalysisResults;

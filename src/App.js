@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import SentimentAnalysisResults from './components/SentimentAnalysisResults';
 import { CircularProgress } from '@mui/material';
+import { MdDarkMode, MdLightMode } from 'react-icons/md'; // Ícones modernos
 import './index.css'; // Para incluir os estilos da barra de rolagem
 
 function App() {
@@ -59,15 +60,17 @@ function App() {
 
   return (
     <div className={`App text-center p-6 min-h-screen ${darkMode ? 'bg-[#181a1b] text-[#e8e6e3] dark-scrollbar' : 'bg-gray-100 text-gray-900 light-scrollbar'}`}>
-      <h1 className="text-3xl font-bold mb-6">Análise de Sentimentos de Tweets</h1>
+      {/* Botão de alternância de tema posicionado no canto superior direito */}
+      <div className="absolute top-4 right-4">
+        <button
+          className={`p-2 rounded-full transition-colors duration-300 ${darkMode ? 'bg-gray-700 text-white' : 'bg-blue-500 text-white'}`}
+          onClick={toggleDarkMode}
+        >
+          {darkMode ? <MdLightMode size={24} /> : <MdDarkMode size={24} />}
+        </button>
+      </div>
 
-      {/* Botão para alternar o tema */}
-      <button
-        className={`p-2 rounded mb-6 ${darkMode ? 'bg-gray-700 text-white' : 'bg-blue-500 text-white'}`}
-        onClick={toggleDarkMode}
-      >
-        {darkMode ? 'Modo Claro' : 'Modo Escuro'}
-      </button>
+      <h1 className="text-3xl font-bold mb-6">Análise de Sentimentos de Tweets</h1>
 
       <form onSubmit={handleSubmit} className="mb-4">
         <div className="flex justify-center items-center space-x-2">

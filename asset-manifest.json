@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/SentimentDash/static/css/main.b9733bf4.css",
-    "main.js": "/SentimentDash/static/js/main.fef8b1b8.js",
+    "main.js": "/SentimentDash/static/js/main.29bffa79.js",
     "index.html": "/SentimentDash/index.html",
     "main.b9733bf4.css.map": "/SentimentDash/static/css/main.b9733bf4.css.map",
-    "main.fef8b1b8.js.map": "/SentimentDash/static/js/main.fef8b1b8.js.map"
+    "main.29bffa79.js.map": "/SentimentDash/static/js/main.29bffa79.js.map"
   },
   "entrypoints": [
     "static/css/main.b9733bf4.css",
-    "static/js/main.fef8b1b8.js"
+    "static/js/main.29bffa79.js"
   ]
 }

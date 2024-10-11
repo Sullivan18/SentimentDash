@@ -1,15 +1,13 @@
 {
   "files": {
-    "main.css": "/SentimentDash/static/css/main.5e9daaa7.css",
-    "main.js": "/SentimentDash/static/js/main.bcf39f70.js",
-    "static/js/488.4bc028b7.chunk.js": "/SentimentDash/static/js/488.4bc028b7.chunk.js",
+    "main.css": "/SentimentDash/static/css/main.2de74c32.css",
+    "main.js": "/SentimentDash/static/js/main.fcbd575e.js",
     "index.html": "/SentimentDash/index.html",
-    "main.5e9daaa7.css.map": "/SentimentDash/static/css/main.5e9daaa7.css.map",
-    "main.bcf39f70.js.map": "/SentimentDash/static/js/main.bcf39f70.js.map",
-    "488.4bc028b7.chunk.js.map": "/SentimentDash/static/js/488.4bc028b7.chunk.js.map"
+    "main.2de74c32.css.map": "/SentimentDash/static/css/main.2de74c32.css.map",
+    "main.fcbd575e.js.map": "/SentimentDash/static/js/main.fcbd575e.js.map"
   },
   "entrypoints": [
-    "static/css/main.5e9daaa7.css",
-    "static/js/main.bcf39f70.js"
+    "static/css/main.2de74c32.css",
+    "static/js/main.fcbd575e.js"
   ]
 }

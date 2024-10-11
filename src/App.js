@@ -23,7 +23,7 @@ function App() {
     setError(null);
 
     try {
-      const response = await fetch('https://398d-177-36-171-33.ngrok-free.app/scrape', {
+      const response = await fetch('https://539f-177-36-171-33.ngrok-free.app/scrape', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
